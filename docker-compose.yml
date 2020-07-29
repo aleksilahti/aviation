@@ -1,0 +1,52 @@
+version: '3.4'
+
+volumes:
+  mongo_data:
+    name: ${MONGO_VOLUME}
+
+services:
+  # web container runs nginx
+  web:
+    build: 
+      context: ./angular-src
+      args:
+        - APP_BASE_HREF=${APP_BASE_HREF}
+    restart: ${RESTART_POLICY}
+    ports:
+      - "${WEB_HOST_PORT}:8080"
+    restart: ${RESTART_POLICY}
+    networks:
+      manage:
+
+  # backend container runs node
+  backend:
+    build: ./
+    restart: ${RESTART_POLICY}
+    environment:
+      - DB_URI
+      - DB_USER
+      - DB_PASS
+      - JWT_SECRET
+    networks:
+      manage:
+
+  # mongo as a persistent database
+  mongo:
+    image: mongo:4.2-bionic
+    restart: ${RESTART_POLICY}
+    networks:
+      manage:
+
+  # docker-compose run mongo-cli to use mongo cli
+  mongo-cli:
+    image: mongo:4.2-bionic
+    restart: 'no'
+    entrypoint:
+      - mongo
+      - --host
+      - mongo
+    networks:
+      manage:
+
+networks:
+  manage:
