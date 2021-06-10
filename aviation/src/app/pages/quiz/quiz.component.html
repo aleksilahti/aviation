@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+          Featured
+        </div>
+        <img src="https://images.ctfassets.net/lzny33ho1g45/T5qqQQVznbZaNyxmHybDT/b76e0ff25a495e00647fa9fa6193a3c2/best-url-shorteners-00-hero.png?w=1520&fm=jpg&q=30&fit=thumb&h=760" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ question.text}}</h5>
+          <ul class="list-group-numbered px-3 justify-content-center">
+            <li *ngFor="let answer of this.question.answers" class="list-group-item d-flex flex-row bd-highlight border justify-content-center">
+                <p class="card-text">{{ answer.text}}</p>
+                <fa-icon [icon]="faQuestionCircle" 
+                size="2x" 
+                [styles]="{'stroke': 'blue', 'color': '#0d6efd'}"
+                class="far ms-auto my-auto info"></fa-icon>
+            </li>
+        </ul>
+        </div>
+        <div class="card-footer text-muted">
+          report question?
+        </div>
+      </div>
+
+
+    <!--
+        <div class="row">
+        <div class="col-lg-auto text-info">help</div>
+        <div class="col-lg-auto text-warning">hint</div>
+        <div class="col-lg-auto text-success ">show answer</div>
+        <div class="col-lg-auto text-danger">report question</div>
+    </div>
+    -->
+  </div>
