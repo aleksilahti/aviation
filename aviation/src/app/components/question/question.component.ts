@@ -25,13 +25,15 @@ export class QuestionComponent implements OnInit {
                   "explanation": "Answer 4 is false/correct because of reasons"}]
   }
 
-  // test config
-  test = {
+  // quiz configuration, input for quizComponent
+  quiz = {
     "sections": [1, 5, 7], // section/topic id array
     "sectionOrder": "sequential", // sequential|random|reverse
     "numberOfQuestions": "5", //questions per section 1|5|10|20|50|all
     "totalNumberOfQuestions": 15, // sections.length * numberOfQuestions
   }
+
+
 
 
   constructor() { }

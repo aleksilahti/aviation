@@ -1,21 +1,41 @@
 <div class="container">
     <div class="card text-center">
         <div class="card-header">
-          Featured
+            {{ this.currentSection.name }}
         </div>
-        <img src="https://images.ctfassets.net/lzny33ho1g45/T5qqQQVznbZaNyxmHybDT/b76e0ff25a495e00647fa9fa6193a3c2/best-url-shorteners-00-hero.png?w=1520&fm=jpg&q=30&fit=thumb&h=760" class="card-img-top" alt="...">
+
+        <!-- Topic nav & Progress bars -->
+        <div *ngFor="let section of this.quiz.sections" class="row row-cols-2 justify-content-center card-body">
+
+          <div class="col-4 px-0"></div>
+
+
+          <div class="progress col-8 px-0">
+            <div *ngIf="section.progress !== '100'" class="progress-bar progress-bar-striped" role="progressbar" [style.width.%]="this.section.progress" aria-valuemin="0" aria-valuemax="100"></div>
+            <div *ngIf="section.progress === '100'" class="progress-bar progress-bar-striped bg-danger" role="progressbar" [style.width.%]="this.section.progress" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        
+
+        <!-- Image Card -->
+        <img *ngIf="this.currentQuestion.question.imgSrc" src={{this.currentQuestion.question.imgSrc}} class="card-img-top" alt="...">
+        
+        <!-- Card Body -->
         <div class="card-body">
-          <h5 class="card-title">{{ question.text}}</h5>
+          <h5 class="card-title">{{ this.currentQuestion.question.text}}</h5>
           <ul class="list-group-numbered px-3 justify-content-center">
-            <li *ngFor="let answer of this.question.answers" class="list-group-item d-flex flex-row bd-highlight border justify-content-center">
+            <li *ngFor="let answer of this.currentQuestion.question.answers" class="list-group-item d-flex flex-row bd-highlight border justify-content-center">
                 <p class="card-text">{{ answer.text}}</p>
                 <fa-icon [icon]="faQuestionCircle" 
-                size="2x" 
-                [styles]="{'stroke': 'blue', 'color': '#0d6efd'}"
-                class="far ms-auto my-auto info"></fa-icon>
+                  size="2x" 
+                  [styles]="{'stroke': 'blue', 'color': '#0d6efd'}"
+                  class="far ms-auto my-auto info">
+                </fa-icon>
             </li>
         </ul>
         </div>
+
+        <!-- Card Footer -->
         <div class="card-footer text-muted">
           report question?
         </div>
